@@ -22,7 +22,7 @@ router.post('/add', async (req, res) => {
 });
 
 router.get('/list', async (req, res) => {
-  const data = await photoModel.find();
+  const data = await photoModel.find({}).limit(20);
   if (!data) {
     return res.status(httpStatus.StatusCodes.INTERNAL_SERVER_ERROR).json({
       message: 'Error Occured',
@@ -52,11 +52,11 @@ router.put('/update/:id', async (req, res) => {
     image: req.body.image,
     description: req.body.description,
   };
-  const data =await photoModel.findByIdAndUpdate(
+  const data = await photoModel.findByIdAndUpdate(
     { _id: req.params.id },
     { $set: obj }
   );
-  console.log(data)
+  console.log(data);
   if (!data) {
     return res.status(httpStatus.StatusCodes.INTERNAL_SERVER_ERROR).json({
       message: 'Error Occured',
