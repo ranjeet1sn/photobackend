@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const photoModel = require('../models/photo.model');
 const httpStatus = require('http-status-codes');
+
 router.post('/add', async (req, res) => {
   console.log(req.photo);
   let photo = new photoModel({
@@ -66,4 +67,5 @@ router.put('/update/:id', async (req, res) => {
     data: data,
   });
 });
+
 module.exports = router;
