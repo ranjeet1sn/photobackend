@@ -22,7 +22,9 @@ router.post('/add', async (req, res) => {
 });
 
 router.get('/list', async (req, res) => {
-  const data = await photoModel.find({}).limit(20);
+  const data = await photoModel
+    .find({ description: { $elemMatch: { allocation: { $lt: 101 } } } })
+    .sort({ creationTime: -1 });
   if (!data) {
     return res.status(httpStatus.StatusCodes.INTERNAL_SERVER_ERROR).json({
       message: 'Error Occured',

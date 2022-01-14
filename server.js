@@ -6,7 +6,7 @@ const userRoutes = require('./routes/auth.route');
 const photoRoutes = require('./routes/photo.route');
 require('dotenv').config();
 require('./connection/connection');
-
+require('mongoose').set('debug',false)
 //  Middleware
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cors({ origin: 'http://localhost:4200' }));
